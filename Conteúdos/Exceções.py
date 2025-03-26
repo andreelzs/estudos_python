@@ -97,6 +97,7 @@ print(f'O valor digitado :{m}')
 
 #Calcular a media --------------------------------------------------
 
+#Cabeçalho da função
 def calcular_media(lista):
     try:
         media = sum(lista) / len(lista)
@@ -110,6 +111,7 @@ def calcular_media(lista):
     finally:
         print('Volte sempre')
 
+#"main"
 valores = []
 while True:
     valor = input('Digite um valor(ou fim para encerrar a lista): ')
@@ -119,6 +121,7 @@ while True:
         valores.append(float(valor))
     except (ValueError, TypeError):
         print('\033[31mErro!Digite um numero inteiro\033[m')
+
 media = calcular_media(valores)
 if media is not None:
     print(f'A media foi de: {media}')
