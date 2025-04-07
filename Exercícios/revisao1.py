@@ -43,52 +43,46 @@
 # ● Se não estiver, permitir que o usuário insira o preço e adicionar o novo produto ao dicionário.
 # ● O programa deve continuar até que o usuário digite "sair".
 import tkinter as tk
-from tkinter import simpledialog, messagebox
 
-def main():
-    # Dicionário de produtos
-    produtos = {}
-    
-    # Configuração da janela principal
-    root = tk.Tk()
-    root.title("Gerenciador de Produtos")
-    root.geometry("400x200")
-    
-    # Função principal de processamento
-    def verificar_produto():
-        nome = entrada.get().strip()
-        entrada.delete(0, tk.END)
-        
-        if not nome:
-            messagebox.showwarning("Aviso", "Digite um produto válido!")
-            return
-            
-        if nome.lower() == "sair":
-            root.destroy()
-            return
-            
-        if nome in produtos:
-            messagebox.showinfo("Resultado", f"Preço de {nome}: R${produtos[nome]:.2f}")
-        else:
-            preco = simpledialog.askfloat("Novo Produto", f"Digite o preço para {nome}:")
-            if preco is not None:  # Se usuário não cancelar
-                produtos[nome] = preco
-                messagebox.showinfo("Sucesso", f"{nome} adicionado com sucesso!")
-    
-    # Elementos da interface
-    tk.Label(root, text="Digite o nome do produto:", font=("Arial", 12)).pack(pady=10)
-    
-    entrada = tk.Entry(root, width=30, font=("Arial", 12))
-    entrada.pack(pady=5)
-    entrada.focus()
-    
-    tk.Button(
-        root, 
-        text="Verificar/Adicionar", 
-        command=verificar_produto,
-        font=("Arial", 12),
-        bg="#4CAF50",
-        fg="white"
-    ).pack(pady=10)
-    
-    root.mainloop()
+root = tk.Tk()
+root.title("Preços de Produtos")
+root.geometry("300x250")
+
+produtos = {}
+
+label_nome = tk.Label(root, text="Nome do Produto:")
+label_nome.grid(row=0, column=0, padx=10, pady=10)
+
+entry_nome = tk.Entry(root)
+entry_nome.grid(row=0, column=1, padx=10, pady=10)
+
+label_preco = tk.Label(root, text="Preço do Produto:")
+label_preco.grid(row=1, column=0, padx=10, pady=10)
+
+entry_preco = tk.Entry(root)
+entry_preco.grid(row=1, column=1, padx=10, pady=10)
+
+def buscar_preco():
+    nome = entry_nome.get()
+    if nome in produtos:
+        preco = produtos[nome]
+        label_resultado.config(text=f"Preço: R${preco:.2f}")
+    else:
+        label_resultado.config(text="Produto não encontrado")
+
+def adicionar_produto():
+    nome = entry_nome.get()
+    preco = float(entry_preco.get())
+    produtos[nome] = preco
+    label_resultado.config(text=f"Produto adicionado com sucesso!")
+
+button_buscar = tk.Button(root, text="Buscar", command=buscar_preco)
+button_buscar.grid(row=2, column=0, columnspan=2, pady=10)
+
+button_adicionar = tk.Button(root, text="Adicionar", command=adicionar_produto)
+button_adicionar.grid(row=3, column=0, columnspan=2, pady=10)
+
+label_resultado = tk.Label(root, text="")
+label_resultado.grid(row=4, column=0, columnspan=2, padx=10, pady=10)
+
+root.mainloop()
