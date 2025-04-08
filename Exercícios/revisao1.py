@@ -129,6 +129,68 @@ from tkinter import messagebox
 # função verificará se há algum elemento na lista maior que o limite desejado e
 # retornará o índice do primeiro elemento que atenda a essa condição, ou
 # retornará -1 se nenhum elemento for maior que o limite desejado.
+# import tkinter as tk
+
+# def verificar_limite():
+#     # Recupera os dados da interface
+#     lista_texto = entry_lista.get()
+#     limite_texto = entry_limite.get()
+
+#     # Validação: verifica se a entrada do limite é um número
+#     try:
+#         limite = float(limite_texto)
+#     except ValueError:
+#         resultado_label.config(text="Erro: Digite um número válido para o limite!")
+#         return
+
+#     # Converte a string com números separados por vírgula em uma lista de float
+#     try:
+#         # Remove espaços e converte cada número
+#         lista_numeros = [float(num.strip()) for num in lista_texto.split(",") if num.strip() != ""]
+#     except ValueError:
+#         resultado_label.config(text="Erro: Certifique-se de digitar números separados por vírgula.")
+#         return
+
+#     # Verifica se há algum elemento na lista maior que o limite
+#     indice_encontrado = -1
+#     for index, num in enumerate(lista_numeros):
+#         if num > limite:
+#             indice_encontrado = index
+#             break
+
+#     # Exibe o resultado
+#     resultado_label.config(text=f"Índice do primeiro elemento maior que {limite}: {indice_encontrado}")
+
+# # Configuração da janela principal
+# root = tk.Tk()
+# root.title("Verificação de Limite")
+# root.geometry("500x300")
+
+# # Rótulo e entrada para a lista de números
+# label_lista = tk.Label(root, text="Digite uma lista ordenada de números (separados por vírgula):", font=("Arial", 12))
+# label_lista.grid(row=0, column=0, columnspan=2, padx=10, pady=10, sticky="w")
+
+# entry_lista = tk.Entry(root, font=("Arial", 12), width=40)
+# entry_lista.grid(row=1, column=0, columnspan=2, padx=10, pady=5)
+
+# # Rótulo e entrada para o limite desejado
+# label_limite = tk.Label(root, text="Digite o limite desejado:", font=("Arial", 12))
+# label_limite.grid(row=2, column=0, padx=10, pady=10, sticky="w")
+
+# entry_limite = tk.Entry(root, font=("Arial", 12))
+# entry_limite.grid(row=2, column=1, padx=10, pady=10)
+
+# # Botão para executar a verificação
+# botao_verificar = tk.Button(root, text="Verificar", font=("Arial", 12), command=verificar_limite)
+# botao_verificar.grid(row=3, column=0, columnspan=2, pady=20)
+
+# # Label para exibir o resultado
+# resultado_label = tk.Label(root, text="", font=("Arial", 12))
+# resultado_label.grid(row=4, column=0, columnspan=2, padx=10, pady=10)
+
+# # Inicia o loop da interface gráfica
+# root.mainloop()
+
 
 # 3. Criar uma interface Tkinter que permita ao usuário inserir um ano e, ao
 # pressionar um botão, a função verificará se o ano é bissexto ou não. Em
