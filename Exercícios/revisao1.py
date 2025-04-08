@@ -1,3 +1,6 @@
+import tkinter as tk
+from tkinter import messagebox
+
 # 1. Escreva uma função verificar_numero que recebe um número inserido pelo
 # usuário como parâmetro e imprime em uma caixa de mensagem do Tkinter
 # se o número é positivo ou negativo.
@@ -91,8 +94,7 @@
 # 1. Escreva uma função verificar_numero que recebe um número inserido pelo
 # usuário como parâmetro e imprime em uma caixa de mensagem do Tkinter
 # se o número é positivo ou negativo.
-import tkinter as tk
-from tkinter import messagebox
+
 # def verificar_numero():
 #     try:
 #         numero = float(entry_numero.get())
@@ -132,25 +134,161 @@ from tkinter import messagebox
 # pressionar um botão, a função verificará se o ano é bissexto ou não. Em
 # seguida, exibirá uma mensagem indicando o resultado.
 
-def verificar_ano():
-    try:
-        ano = int(entry_ano.get())
-        bissexto = (ano % 4 == 0 and ano % 100 != 0) or (ano % 400 == 0)
-        messagebox.showinfo("Resultado", f"O ano {ano} é bissexto!" if bissexto else f"O ano: {ano} não é bissexto!")
-    except (ValueError, TypeError):
-        messagebox.showerror("Erro", "Ano inválido!")
+# def verificar_ano():
+#     try:
+#         ano = int(entry_ano.get())
+#         bissexto = (ano % 4 == 0 and ano % 100 != 0) or (ano % 400 == 0)
+#         messagebox.showinfo("Resultado", f"O ano {ano} é bissexto!" if bissexto else f"O ano: {ano} não é bissexto!")
+#     except (ValueError, TypeError):
+#         messagebox.showerror("Erro", "Ano inválido!")
 
-root = tk.Tk()
-root.geometry("300x200")
-root.title("Verificador de Ano Bissexto")
+# root = tk.Tk()
+# root.geometry("300x200")
+# root.title("Verificador de Ano Bissexto")
 
-label_ano = tk.Label(root, text="Digite um ano: ")
-label_ano.pack(pady=10)
+# label_ano = tk.Label(root, text="Digite um ano: ")
+# label_ano.pack(pady=10)
 
-entry_ano = tk.Entry(root)
-entry_ano.pack(pady=10)
+# entry_ano = tk.Entry(root)
+# entry_ano.pack(pady=10)
  
-button= tk.Button(root,"Verificar", command=verificar_ano)
-button.pack(pady=10)
+# button= tk.Button(root, text= "Verificar", command=verificar_ano)
+# button.pack(pady=10)
 
+# root.mainloop()
+
+
+# 4. Criar uma calculadora básica em Tkinter que permita ao usuário inserir dois
+# números e, ao pressionar um botão, exibirá o resultado da
+# adição,subtração,multiplicação e divisão desses dois números.
+
+# def calcular():
+
+#     try: 
+#         num1 = float(entry_num1.get())
+#         num2 = float(entry_num2.get())
+
+#         soma = num1 + num2
+#         subtracao = num1 - num2
+#         multiplicacao = num1 * num2
+#         divisao = num1 / num2 if num2 != 0 else "Indefinido"
+        
+#         messagebox.showinfo("Resultado", f"Soma: {soma:.1f}\nSubtração: {subtracao:.1f}\nMultiplicação: {multiplicacao:.1f}\nDivisão: {divisao:.1f}")
+
+#     except ZeroDivisionError:
+#         messagebox.showerror("Erro", "Não é possível dividir por zero.")
+#     except (ValueError, TypeError):
+#         messagebox.showerror("Erro", "Os valores digitados é inválido.")
+        
+# root = tk.Tk()
+# root.title("Calculadora Básica")
+# root.geometry("300x200")
+
+# frame = tk.Frame(root)
+# frame.pack(pady=10)
+
+# label = tk.Label(root, text="Digite dois números para fazer os cálculos: ")
+# label.pack(pady=10)
+
+# entry_num1 = tk.Entry(frame)
+# entry_num1.grid(row=0, column=0, padx=10, pady=10)
+
+# entry_num2 = tk.Entry(frame)
+# entry_num2.grid(row=0, column=1, padx=10, pady=10)
+
+# button = tk.Button(frame, text="Calcular", command=calcular)
+# button.grid(row=1, columnspan=2, pady=10)
+
+# root.mainloop()
+
+
+# 5. Criar uma interface Tkinter que permita ler quatro valores pelo teclado e
+# guarde-os em uma lista.
+# No final mostre:
+# a)Quantas vezes apareceu o valor 9.
+# b)Em que posição foi digitado o primeiro valor 3.
+# c)Quais foram os números pares. enunciado para tkinter
+
+import tkinter as tk
+
+def processar_valores():
+    try:
+        # Coleta e converte os valores dos Entry para inteiros
+        valor1 = int(entry1.get())
+        valor2 = int(entry2.get())
+        valor3 = int(entry3.get())
+        valor4 = int(entry4.get())
+    except ValueError:
+        resultado_label.config(text="Erro: por favor, digite apenas números inteiros!")
+        return
+
+    # Armazena os valores em uma lista
+    lista_valores = [valor1, valor2, valor3, valor4]
+
+    # a) Quantas vezes apareceu o valor 9.
+    vezes_nove = lista_valores.count(9)
+
+    # b) Em que posição foi digitado o primeiro valor 3.
+    try:
+        posicao_tres = lista_valores.index(3)
+        posicao_msg = f"{posicao_tres} (posição índice, iniciando em 0)"
+    except ValueError:
+        posicao_msg = "Não foi digitado o valor 3."
+
+    # c) Quais foram os números pares.
+    pares = [str(num) for num in lista_valores if num % 2 == 0]
+    msg_pares = ", ".join(pares) if pares else "Nenhum número par encontrado"
+
+    # Monta a mensagem de resultado
+    mensagem = (
+        f"Lista de valores: {lista_valores}\n"
+        f"Valor 9 apareceu {vezes_nove} vezes\n"
+        f"Primeiro valor 3 está na: {posicao_msg}\n"
+        f"Números pares: {msg_pares}"
+    )
+
+    resultado_label.config(text=mensagem)
+
+# Criando a janela principal
+root = tk.Tk()
+root.title("Leitura de 4 Valores")
+root.geometry("400x300")
+
+# Rótulo de instrução
+label_instrucao = tk.Label(root, text="Digite quatro valores:", font=("Arial", 12))
+label_instrucao.grid(row=0, column=0, columnspan=2, padx=10, pady=10)
+
+# Entrada para o valor 1
+label1 = tk.Label(root, text="Valor 1:", font=("Arial", 12))
+label1.grid(row=1, column=0, padx=10, pady=5, sticky="e")
+entry1 = tk.Entry(root, font=("Arial", 12))
+entry1.grid(row=1, column=1, padx=10, pady=5)
+
+# Entrada para o valor 2
+label2 = tk.Label(root, text="Valor 2:", font=("Arial", 12))
+label2.grid(row=2, column=0, padx=10, pady=5, sticky="e")
+entry2 = tk.Entry(root, font=("Arial", 12))
+entry2.grid(row=2, column=1, padx=10, pady=5)
+
+# Entrada para o valor 3
+label3 = tk.Label(root, text="Valor 3:", font=("Arial", 12))
+label3.grid(row=3, column=0, padx=10, pady=5, sticky="e")
+entry3 = tk.Entry(root, font=("Arial", 12))
+entry3.grid(row=3, column=1, padx=10, pady=5)
+
+# Entrada para o valor 4
+label4 = tk.Label(root, text="Valor 4:", font=("Arial", 12))
+label4.grid(row=4, column=0, padx=10, pady=5, sticky="e")
+entry4 = tk.Entry(root, font=("Arial", 12))
+entry4.grid(row=4, column=1, padx=10, pady=5)
+
+# Botão para processar os valores digitados
+btn_processar = tk.Button(root, text="Processar Valores", font=("Arial", 12), command=processar_valores)
+btn_processar.grid(row=5, column=0, columnspan=2, pady=20)
+
+# Label para exibir os resultados
+resultado_label = tk.Label(root, text="", font=("Arial", 12))
+resultado_label.grid(row=6, column=0, columnspan=2, padx=10, pady=10)
+
+# Inicia o loop da interface gráfica
 root.mainloop()
