@@ -1,5 +1,5 @@
 #Exceção :https://docs.python.org/3/library/exceptions.html
-
+'''
 try:
     operação
 except:
@@ -8,6 +8,7 @@ else:
     certo
 finally:
     mostra resposta independente de certo ou errado
+'''
 #------------------------------------------------------
 try:
     n = int(input('Digite um numero: '))
